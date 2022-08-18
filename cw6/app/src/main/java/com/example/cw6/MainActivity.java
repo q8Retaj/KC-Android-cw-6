@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.Image;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<Student> studentArrayList=new ArrayList<>();
+    int currentStudent=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +33,23 @@ public class MainActivity extends AppCompatActivity {
         studentArrayList.add(student3);
         studentArrayList.add(student4);
 
-        studentphotoView.setImageResource(studentArrayList.get(0).getStudentImg());
-        textView.setText(studentArrayList.get(0).getStudentName());
-        textView1.setText(String.valueOf(studentArrayList.get(0).getStudentAge()));
-        textView2.setText(String.valueOf(studentArrayList.get(0).getStudentGrade()));
+        studentphotoView.setImageResource(studentArrayList.get(currentStudent).getStudentImg());
+        textView.setText(studentArrayList.get(currentStudent).getStudentName());
+        textView1.setText(String.valueOf(studentArrayList.get(currentStudent).getStudentAge()));
+        textView2.setText(String.valueOf(studentArrayList.get(currentStudent).getStudentGrade()));
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentStudent++;
+                studentphotoView.setImageResource(studentArrayList.get(currentStudent).getStudentImg());
+                textView.setText(studentArrayList.get(currentStudent).getStudentName());
+                textView1.setText(String.valueOf(studentArrayList.get(currentStudent).getStudentAge()));
+                textView2.setText(String.valueOf(studentArrayList.get(currentStudent).getStudentGrade()));
+
+
+            }
+        });
 
     }
 
